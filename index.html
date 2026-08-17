@@ -1,139 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kurkaru Lyco Dostoevsky</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Nunito', sans-serif;
-      background-color: #e0f7fa;
-      color: #333;
+      padding: 0;
     }
-    header{
-    HEAD
-      background-image: url('potongan_refsheet_pala.png');
-      background-image: url("potongan_refsheet_pala.png");
-      background-size: cover;
-      background-position: center;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 2px 2px 4px #000;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      line-height: 1.6;
+      padding: 20px;
     }
-    header h1 {
-      font-size: 3em;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 0.5em 1em;
-      border-radius: 12px;
-    }
-    main {
+    .container {
       max-width: 900px;
-      margin: 2em auto;
-      padding: 0 1em;
+      margin: 0 auto;
     }
-    .section {
-      margin-bottom: 2.5em;
-    }
-    .section img {
-      max-width: 200px;
+
+    /* Hero Banner */
+    .hero {
+      position: relative;
+      text-align: center;
       border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .about {
-      display: flex;
-      align-items: center;
-      gap: 1.5em;
-    }
-    .about p {
-      font-size: 1.2em;
-    }
-    .social-links a {
+    .hero img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
       display: block;
-      margin: 0.5em 0;
+      transition: transform 0.5s ease;
+    }
+    .hero:hover img {
+      transform: scale(1.03);
+    }
+    .hero-title {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Cards Layout */
+    .card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Section Titles */
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+      color: #38bdf8;
+      border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+      padding-bottom: 8px;
+    }
+
+    /* About Section */
+    .about-content {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .about-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+    .about-text {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    /* Social Media Links */
+    .social-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .social-item {
+      display: flex;
+      flex-direction: column;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 14px 18px;
+      border-radius: 12px;
       text-decoration: none;
-      background-color: #00acc1;
-      color: white;
-      padding: 0.5em 1em;
-      border-radius: 8px;
-      transition: background 0.3s;
+      color: inherit;
+      transition: all 0.3s ease;
     }
-    .social-links a:hover {
-      background-color: #00838f;
+    .social-item:hover {
+      background: #0284c7;
+      transform: translateX(6px);
+      color: #ffffff;
     }
-    .social-links p {
-      margin-bottom: 1.5em;
-      margin: 0.2em 0 1em 0;
-      font-size: 0.95em;
-      color: #444;
+    .social-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .social-desc {
+      font-size: 0.88rem;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Kurkaru Lyco Dostoevsky</h1>
-  </header>
-  <main>
-    <section class="section about">
-      <img src="Chibi_kura.jpg" alt="Chibi_kura.jpg"> 
-      <div>
-  <main>
-    <section class="section about">
-      <img src="potongan_refsheet_pala.png" alt="potongan_refsheet_pala.png">
-       <div>
-        <h2>About Kurkaru</h2>
-        <p>Kurkaru is a soft-spoken arctic fox with a quiet hint of cunning in his eyes. In his heart lives a dream, to become a writer like Fyodor Dostoevsky, weaving stories that linger in the soul. One day, he hopes to bring his own furry visual novel to life, a world shaped by imagination and feeling.
 
-He spends his days wandering between pages of books, melodies of musical instruments, and the thrill of games. Music calls to him as well, and he finds joy playing in a band, where every note feels like another story waiting to be told.
+  <div class="container">
+    <!-- Header/Hero Section -->
+    <div class="hero">
+      <img src="potongan_refsheet_pala.png" alt="Kurkaru Lyco Dostoevsky">
+      <div class="hero-title">Kurkaru Lyco Dostoevsky</div>
+    </div>
 
-Curiosity guides him, especially toward languages. Words from different worlds fascinate him, and now he moves comfortably between Indonesian, English, and German, always listening, always learning. 🦊✨</p>
+    <!-- About Section -->
+    <div class="card">
+      <h2>About Kurkaru</h2>
+      <div class="about-content">
+        <img src="Chibi_kura.jpg" alt="Kurkaru Avatar" class="about-avatar">
+        <div class="about-text">
+          <p>Kurkaru is a soft-spoken arctic fox with a quiet hint of cunning in his eyes. In his heart lives a dream, to become a writer like Fyodor Dostoevsky, weaving stories that linger in the soul. One day, he hopes to bring his own furry visual novel to life, a world shaped by imagination and feeling.</p>
+          <br>
+          <p>He spends his days wandering between pages of books, melodies of musical instruments, and the thrill of games. Music calls to him as well, and he finds joy playing in a band, where every note feels like another story waiting to be told. Curiosity guides him, especially toward languages. Words from different worlds fascinate him, and now he moves comfortably between Indonesian, English, and German, always listening, always learning. 🦊✨</p>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <section class="section">
+    <!-- Social Media Section -->
+    <div class="card">
       <h2>Social Media</h2>
-      <div class="social-links">
-        <a href="https://www.instagram.com/kurrsoxee?igsh=MWs3dWQyZW8wZ3Uzbw%3D%3D&utm_source=qr" target="_blank">Instagram</a>
-        <p>Follow Kurkaru's everyday life, sketches, and furry art updates.</p>
-
-        <a href="https://www.tiktok.com/@kurkarudostoevsky">TikTok</a>
-        <p>Watch fun and expressive short videos, memes, and character moments from Kurkaru.</p>
-
-        <a href="https://x.com/kurkaruu?s=11">X (Twitter)</a>
-        <p>See Kurkaru's thoughts, updates, and interactions with the furry community.</p>
-
-        <a href="https://youtube.com/@kurkarulyco?si=fejfJf18ZTAugJ5Q" target="_blank">YouTube</a>
-        <p>Content about games and all things related to Kura.</p>
-
-        <a href="https://kura-lyco-dostoevsky.itch.io/" target="_blank">itch.io</a>
-        <p>Kurkaru really likes furry visual novels, and here are some of his favorite novels. 🐾📖</p>
-
-        <a href="https://www.wattpad.com/user/kurkarulyc00">Wattpad</a>
-        <p>From stories drifting through Kurkaru’s mind, they slowly take shape as words—until they come alive as a work on Wattpad.</p>
-
-        <a href="https://discord.gg/Kte2gr8Vt4"_blank">Discord Server</a>
-        <p>Join Kurkaru's community to chat, share art, and talk about visual novel projects.</p>
-
-        <a href="https://open.spotify.com/user/31txsbmno2im3wqnq4y4a6ltrlsm?si=1cqRup8pQE6wYciLdASPAQ">Spotify account</a>
-        <p>Amid the silence and the bustle of the world, Kurkaru weaves melodies into stories.</p>
-
-         <a href="https://saweria.co/kurkaruu">Come support me on Saweria</a>
-        <p>By supporting me on Saweria, you’re not just giving me money—you’re slowly helping heal my mental health too.</p>
-        
+      <div class="social-grid">
+        <a href="#" class="social-item">
+          <span class="social-title">Instagram</span>
+          <span class="social-desc">Follow Kurkaru's everyday life, sketches, and furry art updates.</span>
+        </a>
+        <a href="#" class="social-item">
+          <span class="social-title">TikTok</span>
+          <span class="social-desc">Watch fun and expressive short videos, memes, and character moments from Kurkaru.</span>
+        </a>
+        <a href="#" class="social-item">
+          <span class="social-title">X (Twitter)</span>
+          <span class="social-desc">See Kurkaru's thoughts, updates, and interactions with the furry community.</span>
+        </a>
+        <a href="#" class="social-item">
+          <span class="social-title">YouTube</span>
+          <span class="social-desc">Content about games and all things related to Kura.</span>
+        </a>
+        <a href="#" class="social-item">
+          <span class="social-title">itch.io</span>
+          <span class="social-desc">Kurkaru really likes furry visual novels, and here are some of his favorite novels. 🐾 📖</span>
+        </a>
+        <a href="#" class="social-item">
+          <span class="social-title">Wattpad</span>
+          <span class="social-desc">From stories drifting through Kurkaru's mind, they slowly take shape as words—until they come alive as a work on Wattpad.</span>
+        </a>
+        <a href="#" class="social-item">
+          <span class="social-title">Spotify Account</span>
+          <span class="social-desc">Amid the silence and the bustle of the world, Kurkaru weaves melodies into stories.</span>
+        </a>
+        <a href="#" class="social-item">
+          <span class="social-title">Come Support Me on Saweria</span>
+          <span class="social-desc">By supporting me on Saweria, you're not just giving me money—you're slowly helping heal my mental health too.</span>
+        </a>
       </div>
-    </section>
-      <section class="section">
+    </div>
+
+    <!-- Game Gallery Section -->
+    <div class="card">
       <h2>Game Gallery</h2>
       <p>He is truly skilled at playing Mobile Legends, but he's just as good at other games like Free Fire, PUBG, Roblox, Valorant, Genshin Impact, Honkai: Star Rail, Zenless Zone Zero, and others.!</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em;">
-        <img src="game_gallery_1.jpg" alt="Gallery 1" style="width: 100%; border-radius: 12px;">
-        <img src="game_gallery_2.jpg" alt="Gallery 2" style="width: 100%; border-radius: 12px;">
-        <img src="game_gallery_3.jpg" alt="Gallery 3" style="width: 100%; border-radius: 12px;">
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="game_gallery_1.jpg" alt="Game Screenshot 1">
+        </div>
+        <div class="gallery-item">
+          <img src="game_gallery_2.jpg" alt="Game Screenshot 2">
+        </div>
+        <div class="gallery-item">
+          <img src="game_gallery_3.jpg" alt="Game Screenshot 3">
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
+
 </body>
 </html>
