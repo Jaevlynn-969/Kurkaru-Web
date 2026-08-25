@@ -3,226 +3,1237 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Kurkaru Lyco Dostoevsky</title>
+
+  <meta
+    name="description"
+    content="The personal world of Kurkaru Lyco Dostoevsky — stories, music, games and imagination."
+  >
+
   <style>
+    /* =========================
+       RESET
+    ========================= */
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: #f8fafc;
-      line-height: 1.6;
-      padding: 20px;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.10), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.08), transparent 30%),
+        #07111f;
+      color: #e5edf5;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, calc(100% - 32px));
+      padding: 12px 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(7, 17, 31, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+
+      border-radius: 18px;
+      z-index: 1000;
+
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 8px 14px;
+      border-radius: 10px;
+
+      color: #a9b8c8;
+      font-size: 0.9rem;
+
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
     .container {
-      max-width: 900px;
-      margin: 0 auto;
+      width: min(1100px, calc(100% - 32px));
+      margin: auto;
+      padding-top: 105px;
     }
+
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       position: relative;
-      text-align: center;
-      border-radius: 20px;
+      min-height: 560px;
+
+      border-radius: 28px;
       overflow: hidden;
-      margin-bottom: 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+      margin-bottom: 35px;
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45);
     }
+
     .hero img {
       width: 100%;
-      height: 320px;
+      height: 560px;
+
       object-fit: cover;
+      object-position: center;
+
       display: block;
-      transition: transform 0.5s ease;
+
+      transition: transform 1.2s ease;
     }
+
     .hero:hover img {
-      transform: scale(1.03);
+      transform: scale(1.025);
     }
-    .hero-title {
+
+    .hero::after {
+      content: "";
       position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(8px);
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      border: 1px solid rgba(255,255,255,0.1);
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(4, 12, 23, 0.95) 0%,
+          rgba(4, 12, 23, 0.55) 35%,
+          rgba(4, 12, 23, 0.05) 75%
+        );
     }
 
-    .card {
-      background: rgba(30, 41, 59, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 30px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    .hero-content {
+      position: absolute;
+      left: 55px;
+      bottom: 50px;
+
+      z-index: 2;
+      max-width: 650px;
     }
 
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 16px;
+    .hero-label {
+      display: inline-block;
+
+      padding: 6px 12px;
+      margin-bottom: 12px;
+
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 999px;
+
+      background: rgba(56, 189, 248, 0.08);
+
+      color: #7dd3fc;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 6vw, 4.7rem);
+      line-height: 1.05;
+      letter-spacing: -2px;
+
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
       color: #38bdf8;
-      border-bottom: 2px solid rgba(56, 189, 248, 0.2);
-      padding-bottom: 8px;
     }
 
-    .about-content {
+    .hero-description {
+      max-width: 550px;
+      color: #c4d0dc;
+      font-size: 1rem;
+      margin-bottom: 22px;
+    }
+
+    .hero-buttons {
       display: flex;
-      gap: 20px;
-      align-items: center;
+      gap: 12px;
       flex-wrap: wrap;
     }
-    .about-avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #38bdf8;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-    }
-    .about-text {
-      flex: 1;
-      min-width: 250px;
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 11px 20px;
+
+      border-radius: 12px;
+
+      font-size: 0.9rem;
+      font-weight: 700;
+
+      transition: 0.3s ease;
     }
 
-    .social-grid {
+    .btn-primary {
+      background: #38bdf8;
+      color: #03111d;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.13);
+      transform: translateY(-3px);
+    }
+
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    .section {
+      margin-bottom: 30px;
+
+      background: rgba(15, 29, 47, 0.68);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+
+      border-radius: 22px;
+      padding: 30px;
+
+      backdrop-filter: blur(15px);
+
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    .section-heading {
       display: flex;
-      flex-direction: column;
+      align-items: end;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .section-heading h2 span {
+      color: #38bdf8;
+    }
+
+    .section-heading p {
+      color: #8293a6;
+      font-size: 0.85rem;
+    }
+
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-avatar {
+      width: 180px;
+      height: 180px;
+
+      object-fit: cover;
+
+      border-radius: 50%;
+
+      border: 3px solid #38bdf8;
+
+      box-shadow:
+        0 0 0 8px rgba(56, 189, 248, 0.05),
+        0 0 35px rgba(56, 189, 248, 0.25);
+    }
+
+    .about-text p {
+      color: #b9c7d5;
+      margin-bottom: 15px;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================
+       CHARACTER INFO
+    ========================= */
+
+    .character-info {
+      margin-top: 25px;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
       gap: 12px;
     }
-    .social-item {
-      display: flex;
-      flex-direction: column;
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 14px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
+
+    .info-box {
+      padding: 15px;
+
+      border-radius: 14px;
+
+      background: rgba(4, 12, 23, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
-    .social-item:hover {
-      background: #0284c7;
-      transform: translateX(6px);
-      color: #ffffff;
+
+    .info-box small {
+      display: block;
+
+      color: #708399;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .social-title {
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    .social-desc {
-      font-size: 0.88rem;
-      opacity: 0.8;
+
+    .info-box strong {
+      display: block;
+
       margin-top: 4px;
+
+      color: #e8f4ff;
+      font-size: 0.9rem;
+    }
+
+
+    /* =========================
+       SOCIAL MEDIA
+    ========================= */
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .social-item {
+      position: relative;
+
+      padding: 18px;
+
+      border-radius: 15px;
+
+      background: rgba(4, 12, 23, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+
+      overflow: hidden;
+
+      transition: 0.35s ease;
+    }
+
+    .social-item::before {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      width: 3px;
+
+      background: #38bdf8;
+
+      transform: scaleY(0);
+      transform-origin: bottom;
+
+      transition: 0.35s ease;
+    }
+
+    .social-item:hover {
+      transform: translateY(-4px);
+
+      background: rgba(56, 189, 248, 0.08);
+
+      border-color: rgba(56, 189, 248, 0.25);
+    }
+
+    .social-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .social-title {
+      display: block;
+
+      font-size: 1rem;
+      font-weight: 700;
+
+      margin-bottom: 4px;
+    }
+
+    .social-desc {
+      display: block;
+
+      color: #8394a7;
+      font-size: 0.82rem;
+    }
+
+    .social-arrow {
+      position: absolute;
+
+      right: 18px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #38bdf8;
+
+      opacity: 0;
+
+      transition: 0.3s ease;
+    }
+
+    .social-item:hover .social-arrow {
+      opacity: 1;
+      right: 14px;
+    }
+
+
+    /* =========================
+       GALLERY
+    ========================= */
+
+    .gallery-description {
+      color: #8fa0b2;
+      margin-bottom: 18px;
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 14px;
     }
+
     .gallery-item {
-      border-radius: 12px;
+      position: relative;
+
+      aspect-ratio: 16 / 10;
+
       overflow: hidden;
-      aspect-ratio: 16 / 9;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+      border-radius: 15px;
+
+      cursor: pointer;
+
+      border: 1px solid rgba(255, 255, 255, 0.07);
+
+      background: #0a1422;
     }
+
     .gallery-item img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
-      transition: transform 0.4s ease;
+
+      display: block;
+
+      transition: 0.5s ease;
     }
+
+    .gallery-item::after {
+      content: "VIEW";
+
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(4, 12, 23, 0.55);
+
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+
+      opacity: 0;
+
+      transition: 0.3s ease;
+    }
+
     .gallery-item:hover img {
-      transform: scale(1.1);
+      transform: scale(1.08);
     }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      text-align: center;
+
+      padding: 35px 0 50px;
+
+      color: #607286;
+
+      font-size: 0.8rem;
+    }
+
+    footer span {
+      color: #38bdf8;
+    }
+
+
+    /* =========================
+       LIGHTBOX
+    ========================= */
+
+    .lightbox {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 2000;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+      background: rgba(0, 0, 0, 0.88);
+
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 90vh;
+
+      border-radius: 15px;
+
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.7);
+    }
+
+    .lightbox-close {
+      position: absolute;
+
+      top: 25px;
+      right: 30px;
+
+      width: 45px;
+      height: 45px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.1);
+
+      color: white;
+
+      font-size: 1.5rem;
+
+      cursor: pointer;
+
+      transition: 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      background: #38bdf8;
+      color: #03111d;
+    }
+
+
+    /* =========================
+       SCROLL ANIMATION
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform: translateY(25px);
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 750px) {
+
+      .navbar {
+        top: 10px;
+        width: calc(100% - 20px);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .container {
+        width: calc(100% - 20px);
+        padding-top: 85px;
+      }
+
+      .hero {
+        min-height: 500px;
+        border-radius: 20px;
+      }
+
+      .hero img {
+        height: 500px;
+      }
+
+      .hero-content {
+        left: 25px;
+        right: 25px;
+        bottom: 30px;
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .section {
+        padding: 22px;
+        border-radius: 18px;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .about-avatar {
+        margin: auto;
+      }
+
+      .character-info {
+        grid-template-columns: repeat(2, 1fr);
+        text-align: left;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 5px;
+      }
+    }
+
+
+    @media (max-width: 420px) {
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-description {
+        font-size: 0.88rem;
+      }
+
+      .character-info {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
+
+
 <body>
 
-  <div class="container">
-    <div class="hero">
-      <img src="potongan_refsheet_pala.png" alt="Kurkaru Lyco Dostoevsky">
-      <div class="hero-title">Kurkaru Lyco Dostoevsky</div>
-    </div>
 
-    <div class="card">
-      <h2>About Kurkaru</h2>
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
+  <nav class="navbar">
+
+    <a href="#" class="logo">
+      <span>KU</span>RKARU
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#social">Social</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+
+  </nav>
+
+
+
+  <main class="container">
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <img
+        src="potongan_refsheet_pala.png"
+        alt="Kurkaru Lyco Dostoevsky"
+      >
+
+      <div class="hero-content">
+
+        <div class="hero-label">
+          Personal Character Archive
+        </div>
+
+        <h1>
+          Kurkaru <span>Lyco</span>
+        </h1>
+
+        <p class="hero-description">
+          A quiet arctic fox who lives between stories,
+          music, games, and imagination.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#about" class="btn btn-primary">
+            Explore Kurkaru ↓
+          </a>
+
+          <!--
+            GANTI about.html DENGAN HALAMAN YANG KAMU BUAT
+          -->
+
+          <a href="about.html" class="btn btn-secondary">
+            Character Page →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="section reveal" id="about">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>About <span>Kurkaru</span></h2>
+        </div>
+
+        <p>Who is behind the name?</p>
+
+      </div>
+
+
       <div class="about-content">
-        <img src="Chibi_kura.jpg" alt="Kurkaru Avatar" class="about-avatar">
+
+        <img
+          src="Chibi_kura.jpg"
+          alt="Kurkaru Avatar"
+          class="about-avatar"
+        >
+
+
         <div class="about-text">
-          <p>Kurkaru is a soft-spoken arctic fox with a quiet hint of cunning in his eyes. In his heart lives a dream, to become a writer like Fyodor Dostoevsky, weaving stories that linger in the soul. One day, he hopes to bring his own furry visual novel to life, a world shaped by imagination and feeling.</p>
-          <br>
-          <p>He spends his days wandering between pages of books, melodies of musical instruments, and the thrill of games. Music calls to him as well, and he finds joy playing in a band, where every note feels like another story waiting to be told. Curiosity guides him, especially toward languages. Words from different worlds fascinate him, and now he moves comfortably between Indonesian, English, and German, always listening, always learning. 🦊✨</p>
-        </div>
-      </div>
-    </div>
 
-    <div class="card">
-      <h2>Social Media</h2>
+          <p>
+            Kurkaru is a soft-spoken arctic fox with a quiet hint
+            of cunning in his eyes. In his heart lives a dream:
+            to become a writer like Fyodor Dostoevsky, weaving
+            stories that linger in the soul.
+          </p>
+
+          <p>
+            One day, he hopes to bring his own furry visual novel
+            to life — a world shaped by imagination and feeling.
+            He spends his days wandering between books, music,
+            games, and the endless curiosity of learning new
+            languages.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="character-info">
+
+        <div class="info-box">
+          <small>Species</small>
+          <strong>Arctic Fox</strong>
+        </div>
+
+        <div class="info-box">
+          <small>Dream</small>
+          <strong>Visual Novel Writer</strong>
+        </div>
+
+        <div class="info-box">
+          <small>Languages</small>
+          <strong>ID · EN · DE</strong>
+        </div>
+
+        <div class="info-box">
+          <small>Interests</small>
+          <strong>Books · Music · Games</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SOCIAL
+    ========================== -->
+
+    <section class="section reveal" id="social">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Find <span>Kurkaru</span></h2>
+        </div>
+
+        <p>Across the internet</p>
+
+      </div>
+
+
       <div class="social-grid">
-        <a href="https://www.instagram.com/kurrsoxee?igsh=MWs3dWQyZW8wZ3Uzbw%3D%3D&utm_source=qr" class="social-item">
-          <span class="social-title">Instagram</span>
-          <span class="social-desc">Follow Kurkaru's everyday life, sketches, and furry art updates.</span>
-        </a>
-        <a href="https://www.tiktok.com/@kurkarudostoevsky?_r=1&_t=ZS-98x2skXrZt1" class="social-item">
-          <span class="social-title">TikTok</span>
-          <span class="social-desc">Watch fun and expressive short videos, memes, and character moments from Kurkaru.</span>
-        </a>
-        <a href="https://x.com/kurkaruu?s=11" class="social-item">
-          <span class="social-title">X (Twitter)</span>
-          <span class="social-desc">See Kurkaru's thoughts, updates, and interactions with the furry community.</span>
-        </a>
-        <a href="https://youtube.com/@kurkarulyco?si=8nAFJna_m9yIFBiL" class="social-item">
-          <span class="social-title">YouTube</span>
-          <span class="social-desc">Content about games and all things related to Kurkaru.</span>
-        </a>
-        <a href="https://kurkaru-lyco-dostoevsky.itch.io/" class="social-item">
-          <span class="social-title">itch.io</span>
-          <span class="social-desc">Kurkaru really likes furry visual novels, and here are some of his favorite novels. 🐾 📖</span>
-        </a>
-        <a href="https://www.wattpad.com/user/kurkarulyc00" class="social-item">
-          <span class="social-title">Wattpad</span>
-          <span class="social-desc">From stories drifting through Kurkaru's mind, they slowly take shape as words, until they come alive as a work on Wattpad.</span>
-        </a>
-        <a href="https://open.spotify.com/user/31txsbmno2im3wqnq4y4a6ltrlsm?si=4b24311718584e5f" class="social-item">
-          <span class="social-title">Spotify Account</span>
-          <span class="social-desc">Amid the silence and the bustle of the world, Kurkaru weaves melodies into stories.</span>
-        </a>
-        <a href="https://saweria.co/kurkaruu" class="social-item">
-          <span class="social-title">Come Support Me on Saweria</span>
-          <span class="social-desc">By supporting me on Saweria, you're not just giving me money, you're slowly helping heal my mental health too.</span>
-        </a>
-      </div>
-    </div>
 
-    <div class="card">
-      <h2>Game Gallery</h2>
-      <p>He is truly skilled at playing Mobile Legends, but he's just as good at other games like Free Fire, PUBG, Roblox, Valorant, Genshin Impact, Honkai: Star Rail, Zenless Zone Zero, and others.!</p>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="Kura_flex2.jpg" alt="Game Screenshot 1">
-        </div>
-        <div class="gallery-item">
-          <img src="game_gallery_2.jpg" alt="Game Screenshot 2">
-        </div>
-        <div class="gallery-item">
-          <img src="akun_athena.jpg" alt="Game Screenshot 3">
-        </div>
+
+        <a
+          href="https://www.instagram.com/kurrsoxee"
+          target="_blank"
+          rel="noopener"
+          class="social-item"
+        >
+          <span class="social-title">Instagram</span>
+          <span class="social-desc">
+            Everyday life, sketches, and furry art updates.
+          </span>
+          <span class="social-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="https://www.tiktok.com/@kurkarudostoevsky"
+          target="_blank"
+          rel="noopener"
+          class="social-item"
+        >
+          <span class="social-title">TikTok</span>
+          <span class="social-desc">
+            Short videos, memes, and character moments.
+          </span>
+          <span class="social-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="https://x.com/kurkaruu"
+          target="_blank"
+          rel="noopener"
+          class="social-item"
+        >
+          <span class="social-title">X / Twitter</span>
+          <span class="social-desc">
+            Thoughts, updates, and community interactions.
+          </span>
+          <span class="social-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="https://youtube.com/@kurkarulyco"
+          target="_blank"
+          rel="noopener"
+          class="social-item"
+        >
+          <span class="social-title">YouTube</span>
+          <span class="social-desc">
+            Games and everything related to Kurkaru.
+          </span>
+          <span class="social-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="https://kurkaru-lyco-dostoevsky.itch.io/"
+          target="_blank"
+          rel="noopener"
+          class="social-item"
+        >
+          <span class="social-title">itch.io</span>
+          <span class="social-desc">
+            Furry visual novels and favorite stories.
+          </span>
+          <span class="social-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="https://www.wattpad.com/user/kurkarulyc00"
+          target="_blank"
+          rel="noopener"
+          class="social-item"
+        >
+          <span class="social-title">Wattpad</span>
+          <span class="social-desc">
+            Stories slowly turning from thoughts into words.
+          </span>
+          <span class="social-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="https://open.spotify.com/user/31txsbmno2im3wqnq4y4a6ltrlsm"
+          target="_blank"
+          rel="noopener"
+          class="social-item"
+        >
+          <span class="social-title">Spotify</span>
+          <span class="social-desc">
+            Melodies, playlists, and stories between the notes.
+          </span>
+          <span class="social-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="https://saweria.co/kurkaruu"
+          target="_blank"
+          rel="noopener"
+          class="social-item"
+        >
+          <span class="social-title">Support Kurkaru</span>
+          <span class="social-desc">
+            Support the creative journey and future projects.
+          </span>
+          <span class="social-arrow">↗</span>
+        </a>
+
+
       </div>
-    </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         GALLERY
+    ========================== -->
+
+    <section class="section reveal" id="gallery">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Game <span>Gallery</span></h2>
+        </div>
+
+        <p>Moments from different worlds</p>
+
+      </div>
+
+
+      <p class="gallery-description">
+        From Mobile Legends and Valorant to Roblox, Genshin
+        Impact, Honkai: Star Rail, and beyond — games are
+        another part of Kurkaru's little world.
+      </p>
+
+
+      <div class="gallery-grid">
+
+
+        <div class="gallery-item">
+
+          <img
+            src="Kura_flex2.jpg"
+            alt="Kurkaru game moment"
+          >
+
+        </div>
+
+
+        <div class="gallery-item">
+
+          <img
+            src="game_gallery_2.jpg"
+            alt="Kurkaru game screenshot"
+          >
+
+        </div>
+
+
+        <div class="gallery-item">
+
+          <img
+            src="akun_athena.jpg"
+            alt="Kurkaru game account"
+          >
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+      <p>
+        Made with curiosity by
+        <span>Kurkaru</span> 🦊
+      </p>
+
+      <p>
+        © 2026 Kurkaru Lyco Dostoevsky
+      </p>
+
+    </footer>
+
+  </main>
+
+
+
+  <!-- =========================
+       LIGHTBOX
+  ========================== -->
+
+  <div class="lightbox" id="lightbox">
+
+    <button class="lightbox-close" id="lightboxClose">
+      ×
+    </button>
+
+    <img id="lightboxImage" src="" alt="Expanded gallery image">
+
   </div>
+
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* =========================
+       SCROLL REVEAL
+    ========================== */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
+    revealElements.forEach((element) => {
+
+      observer.observe(element);
+
+    });
+
+
+
+    /* =========================
+       GALLERY LIGHTBOX
+    ========================== */
+
+    const galleryItems =
+      document.querySelectorAll(".gallery-item");
+
+    const lightbox =
+      document.getElementById("lightbox");
+
+    const lightboxImage =
+      document.getElementById("lightboxImage");
+
+    const lightboxClose =
+      document.getElementById("lightboxClose");
+
+
+    galleryItems.forEach((item) => {
+
+      item.addEventListener("click", () => {
+
+        const image =
+          item.querySelector("img");
+
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+
+        lightbox.classList.add("active");
+
+      });
+
+    });
+
+
+    lightboxClose.addEventListener("click", () => {
+
+      lightbox.classList.remove("active");
+
+    });
+
+
+    lightbox.addEventListener("click", (event) => {
+
+      if (event.target === lightbox) {
+
+        lightbox.classList.remove("active");
+
+      }
+
+    });
+
+
+    document.addEventListener("keydown", (event) => {
+
+      if (event.key === "Escape") {
+
+        lightbox.classList.remove("active");
+
+      }
+
+    });
+
+  </script>
 
 </body>
 </html>
