@@ -1,0 +1,1666 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Gallery — Kurkaru Lyco Dostoevsky</title>
+
+  <meta
+    name="description"
+    content="Kurkaru's game gallery and digital memories."
+  >
+
+
+  <style>
+
+    /* =========================================
+       ROOT / COLOR SYSTEM
+    ========================================= */
+
+    :root {
+
+      --background: #071522;
+
+      --background-light: #0b1f32;
+
+      --card: rgba(15, 42, 65, 0.72);
+
+      --card-hover: rgba(23, 61, 91, 0.85);
+
+      --blue: #38bdf8;
+
+      --blue-light: #7dd3fc;
+
+      --blue-soft: #bae6fd;
+
+      --blue-pale: #e0f2fe;
+
+      --text: #e0f2fe;
+
+      --text-secondary: #a9c5d8;
+
+      --text-muted: #718ba1;
+
+      --border: rgba(125, 211, 252, 0.14);
+
+      --shadow: rgba(0, 0, 0, 0.35);
+
+    }
+
+
+    /* =========================================
+       RESET
+    ========================================= */
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+    }
+
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+
+    body {
+
+      font-family:
+        "Segoe UI",
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+
+        radial-gradient(
+          circle at 10% 5%,
+          rgba(56, 189, 248, 0.16),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 90% 75%,
+          rgba(125, 211, 252, 0.10),
+          transparent 32%
+        ),
+
+        linear-gradient(
+          145deg,
+          #06111d,
+          var(--background)
+        );
+
+      min-height: 100vh;
+
+      line-height: 1.7;
+
+      overflow-x: hidden;
+
+    }
+
+
+    a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+
+    button {
+
+      font-family: inherit;
+
+    }
+
+
+    /* =========================================
+       NAVBAR
+    ========================================= */
+
+    .navbar {
+
+      position: fixed;
+
+      top: 18px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: min(
+        1100px,
+        calc(100% - 32px)
+      );
+
+      padding: 12px 18px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      z-index: 1000;
+
+      background:
+        rgba(6, 21, 34, 0.78);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      backdrop-filter: blur(18px);
+
+      box-shadow:
+        0 10px 40px var(--shadow);
+
+    }
+
+
+    .logo {
+
+      font-size: 1.1rem;
+
+      font-weight: 800;
+
+      letter-spacing: 0.5px;
+
+    }
+
+
+    .logo span {
+
+      color: var(--blue-light);
+
+    }
+
+
+    .nav-links {
+
+      display: flex;
+
+      gap: 6px;
+
+      list-style: none;
+
+    }
+
+
+    .nav-links a {
+
+      display: block;
+
+      padding: 8px 14px;
+
+      border-radius: 10px;
+
+      color: var(--text-secondary);
+
+      font-size: 0.9rem;
+
+      transition: 0.3s ease;
+
+    }
+
+
+    .nav-links a:hover {
+
+      color: white;
+
+      background:
+        rgba(56, 189, 248, 0.12);
+
+    }
+
+
+    .nav-links .active {
+
+      color: var(--blue-soft);
+
+      background:
+        rgba(56, 189, 248, 0.10);
+
+    }
+
+
+    /* =========================================
+       CONTAINER
+    ========================================= */
+
+    .container {
+
+      width: min(
+        1100px,
+        calc(100% - 32px)
+      );
+
+      margin: auto;
+
+      padding-top: 110px;
+
+    }
+
+
+    /* =========================================
+       BACK BUTTON
+    ========================================= */
+
+    .back-button {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      margin-bottom: 25px;
+
+      padding: 10px 16px;
+
+      border-radius: 11px;
+
+      background:
+        rgba(255, 255, 255, 0.05);
+
+      border:
+        1px solid var(--border);
+
+      color: var(--text-secondary);
+
+      font-size: 0.85rem;
+
+      transition: 0.3s ease;
+
+    }
+
+
+    .back-button:hover {
+
+      color: white;
+
+      background:
+        rgba(56, 189, 248, 0.12);
+
+      transform: translateX(-4px);
+
+    }
+
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    .gallery-header {
+
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 65px 50px;
+
+      margin-bottom: 30px;
+
+      border-radius: 25px;
+
+      background:
+
+        linear-gradient(
+          135deg,
+          rgba(18, 59, 87, 0.92),
+          rgba(7, 21, 34, 0.96)
+        );
+
+      border:
+        1px solid var(--border);
+
+      box-shadow:
+        0 25px 70px var(--shadow);
+
+    }
+
+
+    .gallery-header::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 320px;
+
+      height: 320px;
+
+      right: -110px;
+
+      top: -150px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(56, 189, 248, 0.12);
+
+      filter: blur(20px);
+
+    }
+
+
+    .gallery-header::after {
+
+      content: "✦";
+
+      position: absolute;
+
+      right: 45px;
+
+      bottom: -45px;
+
+      font-size: 11rem;
+
+      color:
+        rgba(186, 230, 253, 0.05);
+
+    }
+
+
+    .header-label {
+
+      position: relative;
+
+      display: inline-block;
+
+      margin-bottom: 10px;
+
+      color: var(--blue-light);
+
+      font-size: 0.75rem;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .gallery-header h1 {
+
+      position: relative;
+
+      font-size:
+        clamp(
+          2.7rem,
+          6vw,
+          4.8rem
+        );
+
+      line-height: 1;
+
+      letter-spacing: -2px;
+
+      margin-bottom: 16px;
+
+    }
+
+
+    .gallery-header h1 span {
+
+      color: var(--blue-light);
+
+    }
+
+
+    .gallery-header p {
+
+      position: relative;
+
+      max-width: 650px;
+
+      color: var(--text-secondary);
+
+      font-size: 1rem;
+
+    }
+
+
+    /* =========================================
+       FILTER BUTTONS
+    ========================================= */
+
+    .filters {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    .filter-button {
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(12, 35, 54, 0.65);
+
+      color: var(--text-secondary);
+
+      padding: 9px 16px;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      font-size: 0.82rem;
+
+      transition: 0.3s ease;
+
+    }
+
+
+    .filter-button:hover {
+
+      color: white;
+
+      border-color:
+        rgba(125, 211, 252, 0.35);
+
+      background:
+        rgba(56, 189, 248, 0.10);
+
+    }
+
+
+    .filter-button.active {
+
+      background: var(--blue-light);
+
+      color: #061522;
+
+      border-color: var(--blue-light);
+
+      font-weight: 700;
+
+      box-shadow:
+        0 5px 20px
+        rgba(56, 189, 248, 0.20);
+
+    }
+
+
+    /* =========================================
+       GALLERY GRID
+    ========================================= */
+
+    .gallery-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+
+    }
+
+
+    /* =========================================
+       GALLERY CARD
+    ========================================= */
+
+    .gallery-card {
+
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 18px;
+
+      background: var(--card);
+
+      border:
+        1px solid var(--border);
+
+      box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.20);
+
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+
+      cursor: pointer;
+
+    }
+
+
+    .gallery-card:hover {
+
+      transform:
+        translateY(-7px);
+
+      border-color:
+        rgba(125, 211, 252, 0.35);
+
+      box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.35);
+
+    }
+
+
+    .gallery-image {
+
+      position: relative;
+
+      aspect-ratio: 16 / 10;
+
+      overflow: hidden;
+
+      background: #06111d;
+
+    }
+
+
+    .gallery-image img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      transition:
+        transform 0.6s ease;
+
+    }
+
+
+    .gallery-card:hover
+    .gallery-image img {
+
+      transform:
+        scale(1.08);
+
+    }
+
+
+    .gallery-overlay {
+
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+        rgba(5, 18, 30, 0.55);
+
+      opacity: 0;
+
+      transition:
+        opacity 0.3s ease;
+
+    }
+
+
+    .gallery-card:hover
+    .gallery-overlay {
+
+      opacity: 1;
+
+    }
+
+
+    .view-icon {
+
+      width: 50px;
+
+      height: 50px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        rgba(186, 230, 253, 0.92);
+
+      color: #061522;
+
+      font-size: 1.1rem;
+
+      font-weight: 900;
+
+      box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.3);
+
+    }
+
+
+    /* =========================================
+       CARD INFORMATION
+    ========================================= */
+
+    .gallery-info {
+
+      padding: 17px 18px 19px;
+
+    }
+
+
+    .gallery-info h2 {
+
+      font-size: 1rem;
+
+      margin-bottom: 3px;
+
+    }
+
+
+    .gallery-info p {
+
+      color: var(--text-muted);
+
+      font-size: 0.78rem;
+
+    }
+
+
+    .game-tag {
+
+      display: inline-block;
+
+      margin-top: 10px;
+
+      padding: 4px 9px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(56, 189, 248, 0.09);
+
+      color: var(--blue-light);
+
+      border:
+        1px solid
+        rgba(56, 189, 248, 0.12);
+
+      font-size: 0.68rem;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.7px;
+
+    }
+
+
+    /* =========================================
+       EMPTY STATE
+    ========================================= */
+
+    .empty-message {
+
+      display: none;
+
+      padding: 50px;
+
+      text-align: center;
+
+      color: var(--text-muted);
+
+      border:
+        1px dashed
+        rgba(125, 211, 252, 0.15);
+
+      border-radius: 18px;
+
+    }
+
+
+    /* =========================================
+       LIGHTBOX
+    ========================================= */
+
+    .lightbox {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 2000;
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 25px;
+
+      background:
+        rgba(2, 9, 16, 0.90);
+
+      backdrop-filter:
+        blur(12px);
+
+    }
+
+
+    .lightbox.active {
+
+      display: flex;
+
+    }
+
+
+    .lightbox-content {
+
+      position: relative;
+
+      max-width: 1000px;
+
+      width: 100%;
+
+      text-align: center;
+
+    }
+
+
+    .lightbox img {
+
+      max-width: 100%;
+
+      max-height: 80vh;
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.65);
+
+    }
+
+
+    .lightbox-title {
+
+      margin-top: 12px;
+
+      color: var(--blue-soft);
+
+      font-size: 0.9rem;
+
+    }
+
+
+    .lightbox-close {
+
+      position: fixed;
+
+      top: 25px;
+
+      right: 30px;
+
+      width: 45px;
+
+      height: 45px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255, 255, 255, 0.08);
+
+      color: white;
+
+      font-size: 1.5rem;
+
+      cursor: pointer;
+
+      transition: 0.3s ease;
+
+    }
+
+
+    .lightbox-close:hover {
+
+      background: var(--blue-light);
+
+      color: #061522;
+
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    footer {
+
+      text-align: center;
+
+      padding:
+        35px 0 50px;
+
+      color: var(--text-muted);
+
+      font-size: 0.8rem;
+
+    }
+
+
+    footer span {
+
+      color: var(--blue-light);
+
+    }
+
+
+    /* =========================================
+       SCROLL ANIMATION
+    ========================================= */
+
+    .reveal {
+
+      opacity: 0;
+
+      transform:
+        translateY(25px);
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+
+    }
+
+
+    .reveal.visible {
+
+      opacity: 1;
+
+      transform:
+        translateY(0);
+
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 850px) {
+
+      .gallery-grid {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .navbar {
+
+        top: 10px;
+
+        width:
+          calc(100% - 20px);
+
+      }
+
+
+      .nav-links {
+
+        display: none;
+
+      }
+
+
+      .container {
+
+        width:
+          calc(100% - 20px);
+
+        padding-top: 85px;
+
+      }
+
+
+      .gallery-header {
+
+        padding:
+          45px 25px;
+
+      }
+
+
+      .gallery-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .filters {
+
+        gap: 7px;
+
+      }
+
+
+      .filter-button {
+
+        padding:
+          8px 13px;
+
+      }
+
+    }
+
+
+    @media (max-width: 420px) {
+
+      .gallery-header h1 {
+
+        font-size: 2.6rem;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================
+       NAVBAR
+  ========================================== -->
+
+  <nav class="navbar">
+
+    <a href="index.html" class="logo">
+      <span>KU</span>RKARU
+    </a>
+
+
+    <ul class="nav-links">
+
+      <li>
+        <a href="index.html">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="about.html">
+          About
+        </a>
+      </li>
+
+      <li>
+        <a href="gallery.html" class="active">
+          Gallery
+        </a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+
+  <!-- =========================================
+       MAIN
+  ========================================== -->
+
+  <main class="container">
+
+
+    <!-- BACK -->
+
+    <a
+      href="index.html"
+      class="back-button"
+    >
+      ← Back to Home
+    </a>
+
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="gallery-header reveal">
+
+      <span class="header-label">
+        Digital Memories
+      </span>
+
+
+      <h1>
+        Game <span>Gallery</span>
+      </h1>
+
+
+      <p>
+        A small collection of moments from the games
+        Kurkaru has played. From competitive battles
+        to random adventures, every screenshot keeps
+        a little memory from a different world.
+      </p>
+
+    </header>
+
+
+
+    <!-- =========================================
+         FILTERS
+    ========================================== -->
+
+    <div class="filters reveal">
+
+      <button
+        class="filter-button active"
+        data-filter="all"
+      >
+        All
+      </button>
+
+
+      <button
+        class="filter-button"
+        data-filter="competitive"
+      >
+        Competitive
+      </button>
+
+
+      <button
+        class="filter-button"
+        data-filter="casual"
+      >
+        Casual
+      </button>
+
+
+      <button
+        class="filter-button"
+        data-filter="collection"
+      >
+        Collection
+      </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         GALLERY
+    ========================================== -->
+
+    <section
+      class="gallery-grid"
+      id="galleryGrid"
+    >
+
+
+      <!-- IMAGE 1 -->
+
+      <article
+        class="gallery-card reveal"
+        data-category="competitive"
+        data-title="Mobile Legends"
+      >
+
+        <div class="gallery-image">
+
+          <img
+            src="Kura_flex2.jpg"
+            alt="Kurkaru - Mobile Legends"
+          >
+
+
+          <div class="gallery-overlay">
+
+            <div class="view-icon">
+              +
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="gallery-info">
+
+          <h2>
+            Mobile Legends
+          </h2>
+
+          <p>
+            Competitive gaming memories.
+          </p>
+
+          <span class="game-tag">
+            Competitive
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- IMAGE 2 -->
+
+      <article
+        class="gallery-card reveal"
+        data-category="casual"
+        data-title="Game Memories"
+      >
+
+        <div class="gallery-image">
+
+          <img
+            src="game_gallery_2.jpg"
+            alt="Kurkaru game memory"
+          >
+
+
+          <div class="gallery-overlay">
+
+            <div class="view-icon">
+              +
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="gallery-info">
+
+          <h2>
+            Game Memories
+          </h2>
+
+          <p>
+            Another moment from the archive.
+          </p>
+
+          <span class="game-tag">
+            Casual
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- IMAGE 3 -->
+
+      <article
+        class="gallery-card reveal"
+        data-category="collection"
+        data-title="Athena Collection"
+      >
+
+        <div class="gallery-image">
+
+          <img
+            src="akun_athena.jpg"
+            alt="Kurkaru Athena collection"
+          >
+
+
+          <div class="gallery-overlay">
+
+            <div class="view-icon">
+              +
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="gallery-info">
+
+          <h2>
+            Athena Collection
+          </h2>
+
+          <p>
+            A favorite part of the collection.
+          </p>
+
+          <span class="game-tag">
+            Collection
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+    </section>
+
+
+
+    <!-- EMPTY MESSAGE -->
+
+    <div
+      class="empty-message"
+      id="emptyMessage"
+    >
+      There are no memories in this category yet.
+    </div>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+      <p>
+        More memories will be added someday. 🦊
+      </p>
+
+      <p>
+        © 2026
+        <span>
+          Kurkaru Lyco Dostoevsky
+        </span>
+      </p>
+
+    </footer>
+
+
+  </main>
+
+
+
+  <!-- =========================================
+       LIGHTBOX
+  ========================================== -->
+
+  <div
+    class="lightbox"
+    id="lightbox"
+  >
+
+
+    <button
+      class="lightbox-close"
+      id="lightboxClose"
+      aria-label="Close image"
+    >
+      ×
+    </button>
+
+
+    <div class="lightbox-content">
+
+      <img
+        id="lightboxImage"
+        src=""
+        alt=""
+      >
+
+
+      <div
+        class="lightbox-title"
+        id="lightboxTitle"
+      >
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script>
+
+
+    /* =========================================
+       SCROLL REVEAL
+    ========================================== */
+
+    const revealElements =
+      document.querySelectorAll(
+        ".reveal"
+      );
+
+
+    const observer =
+      new IntersectionObserver(
+
+        (entries) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target
+                  .classList
+                  .add("visible");
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+          threshold: 0.10
+        }
+
+      );
+
+
+    revealElements.forEach(
+      (element) => {
+
+        observer.observe(
+          element
+        );
+
+      }
+    );
+
+
+
+    /* =========================================
+       FILTER SYSTEM
+    ========================================== */
+
+    const filterButtons =
+      document.querySelectorAll(
+        ".filter-button"
+      );
+
+
+    const galleryCards =
+      document.querySelectorAll(
+        ".gallery-card"
+      );
+
+
+    const emptyMessage =
+      document.getElementById(
+        "emptyMessage"
+      );
+
+
+    filterButtons.forEach(
+      (button) => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+
+            /* Remove active */
+
+            filterButtons.forEach(
+              (item) => {
+
+                item.classList
+                  .remove("active");
+
+              }
+            );
+
+
+            /* Add active */
+
+            button.classList
+              .add("active");
+
+
+            const filter =
+              button.dataset.filter;
+
+
+            let visibleCards = 0;
+
+
+            galleryCards.forEach(
+              (card) => {
+
+                const category =
+                  card.dataset.category;
+
+
+                if (
+                  filter === "all" ||
+                  category === filter
+                ) {
+
+                  card.style.display =
+                    "block";
+
+                  visibleCards++;
+
+                }
+
+                else {
+
+                  card.style.display =
+                    "none";
+
+                }
+
+              }
+            );
+
+
+            if (
+              visibleCards === 0
+            ) {
+
+              emptyMessage.style.display =
+                "block";
+
+            }
+
+            else {
+
+              emptyMessage.style.display =
+                "none";
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+
+    /* =========================================
+       LIGHTBOX
+    ========================================== */
+
+    const lightbox =
+      document.getElementById(
+        "lightbox"
+      );
+
+
+    const lightboxImage =
+      document.getElementById(
+        "lightboxImage"
+      );
+
+
+    const lightboxTitle =
+      document.getElementById(
+        "lightboxTitle"
+      );
+
+
+    const lightboxClose =
+      document.getElementById(
+        "lightboxClose"
+      );
+
+
+    galleryCards.forEach(
+      (card) => {
+
+        card.addEventListener(
+          "click",
+          () => {
+
+            const image =
+              card.querySelector(
+                "img"
+              );
+
+
+            const title =
+              card.dataset.title;
+
+
+            lightboxImage.src =
+              image.src;
+
+
+            lightboxImage.alt =
+              image.alt;
+
+
+            lightboxTitle.textContent =
+              title;
+
+
+            lightbox.classList
+              .add("active");
+
+          }
+        );
+
+      }
+    );
+
+
+    /* CLOSE BUTTON */
+
+    lightboxClose.addEventListener(
+      "click",
+      () => {
+
+        lightbox.classList
+          .remove("active");
+
+      }
+    );
+
+
+    /* CLICK OUTSIDE IMAGE */
+
+    lightbox.addEventListener(
+      "click",
+      (event) => {
+
+        if (
+          event.target === lightbox
+        ) {
+
+          lightbox.classList
+            .remove("active");
+
+        }
+
+      }
+    );
+
+
+    /* ESCAPE KEY */
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          lightbox.classList
+            .remove("active");
+
+        }
+
+      }
+    );
+
+
+  </script>
+
+
+</body>
+
+</html>
+```
