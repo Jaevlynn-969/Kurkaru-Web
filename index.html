@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
   <title>Kurkaru Lyco Dostoevsky</title>
 
   <style>
-    /* =========================
-       COLOR SYSTEM
-    ========================= */
+
+    /* ==================================================
+       GLOBAL
+    ================================================== */
 
     :root {
       --dark-blue: #071a2d;
@@ -21,16 +23,14 @@
       --soft-white: #eaf6ff;
       --gray: #b8c7d4;
 
-      --glass: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.07);
+      --glass-hover: rgba(255, 255, 255, 0.10);
+
       --border: rgba(255, 255, 255, 0.14);
 
       --shadow: rgba(0, 0, 0, 0.35);
     }
 
-
-    /* =========================
-       RESET
-    ========================= */
 
     * {
       margin: 0;
@@ -38,9 +38,11 @@
       box-sizing: border-box;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
+
 
     body {
       font-family:
@@ -50,51 +52,69 @@
         Verdana,
         sans-serif;
 
+      color: var(--white);
+
       background:
         radial-gradient(
-          circle at top left,
-          rgba(56, 189, 248, 0.15),
+          circle at 10% 0%,
+          rgba(56, 189, 248, 0.16),
           transparent 30%
         ),
+
+        radial-gradient(
+          circle at 90% 70%,
+          rgba(56, 189, 248, 0.08),
+          transparent 30%
+        ),
+
         linear-gradient(
           135deg,
           var(--dark-blue),
           #04111f
         );
 
-      color: var(--white);
-      line-height: 1.7;
       min-height: 100vh;
+
+      line-height: 1.7;
+
       overflow-x: hidden;
     }
 
+
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
 
-    /* =========================
+    /* ==================================================
        NAVBAR
-    ========================= */
+    ================================================== */
 
     .navbar {
       position: fixed;
+
       top: 18px;
       left: 50%;
+
       transform: translateX(-50%);
 
       width: min(1100px, calc(100% - 30px));
 
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       padding: 13px 20px;
 
-      background: rgba(4, 17, 31, 0.82);
+      background:
+        rgba(4, 17, 31, 0.84);
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
+
       border-radius: 18px;
 
       backdrop-filter: blur(18px);
@@ -105,32 +125,46 @@
       z-index: 1000;
     }
 
+
     .logo {
       font-size: 1.15rem;
+
       font-weight: 800;
+
       letter-spacing: 1px;
     }
+
 
     .logo span {
       color: var(--blue);
     }
 
+
     .nav-links {
       display: flex;
+
       gap: 6px;
+
       list-style: none;
     }
 
+
     .nav-links a {
+      display: block;
+
       padding: 8px 14px;
+
       border-radius: 10px;
 
       color: var(--gray);
 
       font-size: 0.9rem;
 
-      transition: 0.3s ease;
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
     }
+
 
     .nav-links a:hover,
     .nav-links .active {
@@ -141,129 +175,162 @@
     }
 
 
-    /* =========================
-       CONTAINER
-    ========================= */
+    /* ==================================================
+       MAIN CONTAINER
+    ================================================== */
 
     .container {
       width: min(1050px, calc(100% - 30px));
+
       margin: auto;
 
       padding-top: 115px;
-      padding-bottom: 50px;
+
+      padding-bottom: 40px;
     }
 
 
-    /* =========================
+    /* ==================================================
        HERO
-    ========================= */
+    ================================================== */
 
     .hero {
       position: relative;
 
       overflow: hidden;
 
+      min-height: 500px;
+
+      margin-bottom: 30px;
+
       border-radius: 25px;
-
-      margin-bottom: 35px;
-
-      box-shadow:
-        0 25px 70px var(--shadow);
 
       border:
         1px solid var(--border);
+
+      box-shadow:
+        0 25px 70px var(--shadow);
     }
 
+
     .hero img {
+      position: absolute;
+
+      inset: 0;
+
       width: 100%;
-      height: 420px;
+      height: 100%;
 
       object-fit: cover;
-
-      display: block;
 
       transition:
         transform 0.7s ease;
     }
 
+
     .hero:hover img {
       transform: scale(1.03);
     }
 
-    .hero-overlay {
+
+    .hero::after {
+      content: "";
+
       position: absolute;
+
       inset: 0;
-
-      display: flex;
-      align-items: flex-end;
-
-      padding: 35px;
 
       background:
         linear-gradient(
-          transparent 35%,
-          rgba(4, 17, 31, 0.9)
+          to top,
+          rgba(4, 17, 31, 0.95) 0%,
+          rgba(4, 17, 31, 0.55) 45%,
+          rgba(4, 17, 31, 0.05) 100%
         );
     }
 
-    .hero-title {
-      width: 100%;
+
+    .hero-content {
+      position: relative;
+
+      z-index: 2;
+
+      min-height: 500px;
+
+      display: flex;
+
+      align-items: flex-end;
+
+      padding: 40px;
     }
 
-    .hero-title small {
+
+    .hero-text {
+      max-width: 720px;
+    }
+
+
+    .hero-label {
       color: var(--light-blue);
 
       font-size: 0.8rem;
 
       font-weight: bold;
 
-      letter-spacing: 3px;
-
       text-transform: uppercase;
+
+      letter-spacing: 3px;
     }
 
-    .hero-title h1 {
+
+    .hero h1 {
       font-size:
-        clamp(2rem, 5vw, 4rem);
+        clamp(2.3rem, 6vw, 4.5rem);
 
-      line-height: 1.1;
+      line-height: 1.05;
 
-      margin: 8px 0;
-    }
-
-    .hero-title p {
-      color: #d5e7f5;
-
-      max-width: 600px;
+      margin: 10px 0 12px;
     }
 
 
-    /* =========================
+    .hero-description {
+      color: #d7e9f5;
+
+      max-width: 650px;
+
+      font-size: 1rem;
+    }
+
+
+    /* ==================================================
        BUTTONS
-    ========================= */
+    ================================================== */
 
     .buttons {
       display: flex;
-      gap: 12px;
-
-      margin-top: 20px;
 
       flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 22px;
     }
+
 
     .button {
       display: inline-flex;
 
       align-items: center;
+
       justify-content: center;
 
       padding: 11px 19px;
 
       border-radius: 12px;
 
-      font-weight: 700;
-
       font-size: 0.9rem;
+
+      font-weight: 700;
 
       transition:
         transform 0.3s ease,
@@ -271,57 +338,67 @@
         box-shadow 0.3s ease;
     }
 
+
     .button-primary {
-      background: var(--blue);
       color: #04111f;
+
+      background:
+        var(--blue);
     }
 
-    .button-primary:hover {
-      background: var(--light-blue);
 
-      transform: translateY(-3px);
+    .button-primary:hover {
+      background:
+        var(--light-blue);
+
+      transform:
+        translateY(-3px);
 
       box-shadow:
         0 10px 25px
         rgba(56, 189, 248, 0.3);
     }
 
+
     .button-secondary {
+      color: var(--white);
+
       background:
         rgba(255, 255, 255, 0.08);
-
-      color: var(--white);
 
       border:
         1px solid var(--border);
     }
 
+
     .button-secondary:hover {
       background:
-        rgba(255, 255, 255, 0.14);
+        rgba(255, 255, 255, 0.15);
 
-      transform: translateY(-3px);
+      transform:
+        translateY(-3px);
     }
 
 
-    /* =========================
+    /* ==================================================
        CARD
-    ========================= */
+    ================================================== */
 
     .card {
+      padding: 28px;
+
+      margin-bottom: 28px;
+
       background:
-        rgba(255, 255, 255, 0.07);
+        var(--glass);
 
       border:
         1px solid var(--border);
 
       border-radius: 20px;
 
-      padding: 28px;
-
-      margin-bottom: 28px;
-
-      backdrop-filter: blur(15px);
+      backdrop-filter:
+        blur(15px);
 
       box-shadow:
         0 15px 40px
@@ -332,22 +409,24 @@
         background 0.3s ease;
     }
 
+
     .card:hover {
-      transform: translateY(-4px);
+      transform:
+        translateY(-3px);
 
       background:
-        rgba(255, 255, 255, 0.09);
+        var(--glass-hover);
     }
 
-    .card h2 {
-      color: var(--white);
+
+    .card-title {
+      margin-bottom: 7px;
 
       font-size: 1.7rem;
-
-      margin-bottom: 8px;
     }
 
-    .card h2::after {
+
+    .card-title::after {
       content: "";
 
       display: block;
@@ -357,15 +436,25 @@
 
       margin-top: 8px;
 
-      background: var(--blue);
-
       border-radius: 10px;
+
+      background:
+        var(--blue);
     }
 
 
-    /* =========================
-       ABOUT PREVIEW
-    ========================= */
+    .card-subtitle {
+      color: var(--gray);
+
+      font-size: 0.9rem;
+
+      margin-bottom: 20px;
+    }
+
+
+    /* ==================================================
+       ABOUT
+    ================================================== */
 
     .about-content {
       display: flex;
@@ -373,13 +462,14 @@
       align-items: center;
 
       gap: 25px;
-
-      margin-top: 20px;
     }
 
+
     .about-avatar {
-      width: 150px;
-      height: 150px;
+      width: 155px;
+      height: 155px;
+
+      flex-shrink: 0;
 
       object-fit: cover;
 
@@ -393,6 +483,7 @@
         rgba(56, 189, 248, 0.25);
     }
 
+
     .about-text {
       flex: 1;
 
@@ -400,170 +491,119 @@
     }
 
 
-    /* =========================
-       SOCIAL
-    ========================= */
-
-   <!-- SOCIAL MEDIA -->
-
-<section class="card">
-
-  <h2>
-    Social Media
-  </h2>
-
-  <div class="social-grid">
-
-    <!-- Instagram -->
-    <a
-      href="https://www.instagram.com/kurrsoxee/"
-      class="social-item"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="social-title">
-        Instagram
-      </span>
-
-      <span class="social-desc">
-        Follow Kurkaru's everyday life, sketches,
-        and furry art updates.
-      </span>
-    </a>
+    .about-text p {
+      margin-bottom: 10px;
+    }
 
 
-    <!-- TikTok -->
-    <a
-      href="https://www.tiktok.com/@kurkarudostoevsky"
-      class="social-item"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="social-title">
-        TikTok
-      </span>
+    /* ==================================================
+       SOCIAL MEDIA
+    ================================================== */
 
-      <span class="social-desc">
-        Watch fun short videos, memes,
-        and character moments from Kurkaru.
-      </span>
-    </a>
+    .social-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 12px;
+    }
 
 
-    <!-- X -->
-    <a
-      href="https://x.com/kurkaruu"
-      class="social-item"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="social-title">
-        X / Twitter
-      </span>
+    .social-item {
+      position: relative;
 
-      <span class="social-desc">
-        See Kurkaru's thoughts, updates,
-        and furry community interactions.
-      </span>
-    </a>
+      display: block;
 
+      padding: 18px;
 
-    <!-- YouTube -->
-    <a
-      href="https://youtube.com/@kurkarulyco"
-      class="social-item"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="social-title">
-        YouTube
-      </span>
+      overflow: hidden;
 
-      <span class="social-desc">
-        Content about games and everything
-        related to Kurkaru.
-      </span>
-    </a>
+      background:
+        rgba(255, 255, 255, 0.045);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 14px;
+
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+    }
 
 
-    <!-- itch.io -->
-    <a
-      href="https://kurkaru-lyco-dostoevsky.itch.io/"
-      class="social-item"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="social-title">
-        itch.io
-      </span>
+    .social-item::before {
+      content: "";
 
-      <span class="social-desc">
-        Furry visual novels and some of
-        Kurkaru's favorite games. 🐾📖
-      </span>
-    </a>
+      position: absolute;
 
+      left: 0;
+      top: 0;
+      bottom: 0;
 
-    <!-- Wattpad -->
-    <a
-      href="https://www.wattpad.com/user/kurkarulyc00"
-      class="social-item"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="social-title">
-        Wattpad
-      </span>
+      width: 3px;
 
-      <span class="social-desc">
-        Stories drifting through Kurkaru's mind,
-        slowly becoming words and coming alive.
-      </span>
-    </a>
+      background:
+        var(--blue);
+
+      transform:
+        scaleY(0);
+
+      transform-origin:
+        bottom;
+
+      transition:
+        transform 0.3s ease;
+    }
 
 
-    <!-- Spotify -->
-    <a
-      href="https://open.spotify.com/user/31txsbmno2im3wqnq4y4a6ltrlsm"
-      class="social-item"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="social-title">
-        Spotify
-      </span>
+    .social-item:hover {
+      transform:
+        translateY(-4px);
 
-      <span class="social-desc">
-        Amid the silence and bustle of the world,
-        Kurkaru weaves melodies into stories.
-      </span>
-    </a>
+      background:
+        rgba(56, 189, 248, 0.11);
+
+      border-color:
+        rgba(56, 189, 248, 0.35);
+    }
 
 
-    <!-- Saweria -->
-    <a
-      href="https://saweria.co/kurkaruu"
-      class="social-item"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="social-title">
-        Support Me on Saweria
-      </span>
+    .social-item:hover::before {
+      transform:
+        scaleY(1);
+    }
 
-      <span class="social-desc">
-        Support Kurkaru and help support
-        future creative projects.
-      </span>
-    </a>
 
-  </div>
+    .social-title {
+      display: block;
 
-</section>
+      margin-bottom: 4px;
 
-    /* =========================
-       GALLERY PREVIEW
-    ========================= */
+      color: var(--white);
+
+      font-size: 1rem;
+
+      font-weight: 700;
+    }
+
+
+    .social-desc {
+      display: block;
+
+      color: var(--gray);
+
+      font-size: 0.82rem;
+
+      line-height: 1.5;
+    }
+
+
+    /* ==================================================
+       GAME GALLERY
+    ================================================== */
 
     .gallery-grid {
       display: grid;
@@ -576,16 +616,24 @@
       margin-top: 20px;
     }
 
-    .gallery-item {
-      overflow: hidden;
 
-      border-radius: 15px;
+    .gallery-item {
+      position: relative;
+
+      overflow: hidden;
 
       aspect-ratio: 16 / 10;
 
+      border-radius: 15px;
+
       border:
         1px solid var(--border);
+
+      box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.25);
     }
+
 
     .gallery-item img {
       width: 100%;
@@ -593,51 +641,75 @@
 
       object-fit: cover;
 
+      display: block;
+
       transition:
         transform 0.5s ease;
     }
 
+
     .gallery-item:hover img {
-      transform: scale(1.08);
+      transform:
+        scale(1.08);
     }
 
 
-    /* =========================
+    /* ==================================================
        FOOTER
-    ========================= */
+    ================================================== */
 
     footer {
+      padding: 25px 0;
+
       text-align: center;
 
       color: var(--gray);
 
       font-size: 0.8rem;
-
-      padding: 30px 0;
     }
+
 
     footer span {
       color: var(--blue);
     }
 
 
-    /* =========================
+    /* ==================================================
        MOBILE
-    ========================= */
+    ================================================== */
 
     @media (max-width: 700px) {
+
+      .navbar {
+        top: 10px;
+      }
+
 
       .nav-links {
         display: none;
       }
 
-      .hero img {
-        height: 350px;
+
+      .container {
+        padding-top: 85px;
       }
 
-      .hero-overlay {
+
+      .hero,
+      .hero-content {
+        min-height: 550px;
+      }
+
+
+      .hero-content {
         padding: 25px;
       }
+
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
 
       .about-content {
         flex-direction: column;
@@ -645,28 +717,41 @@
         text-align: center;
       }
 
+
       .social-grid {
         grid-template-columns: 1fr;
       }
 
+
       .gallery-grid {
         grid-template-columns: 1fr;
       }
+
+
+      .card {
+        padding: 23px;
+      }
+
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-  <!-- NAVBAR -->
+
+  <!-- ==================================================
+       NAVBAR
+  ================================================== -->
 
   <nav class="navbar">
 
     <a href="index.html" class="logo">
       <span>KU</span>RKARU
     </a>
+
 
     <ul class="nav-links">
 
@@ -693,9 +778,17 @@
   </nav>
 
 
+
+  <!-- ==================================================
+       MAIN
+  ================================================== -->
+
   <main class="container">
 
-    <!-- HERO -->
+
+    <!-- ==================================================
+         HERO
+    ================================================== -->
 
     <section class="hero">
 
@@ -704,22 +797,27 @@
         alt="Kurkaru Lyco Dostoevsky"
       >
 
-      <div class="hero-overlay">
 
-        <div class="hero-title">
+      <div class="hero-content">
 
-          <small>
+        <div class="hero-text">
+
+          <span class="hero-label">
             Welcome to my world
-          </small>
+          </span>
+
 
           <h1>
             Kurkaru Lyco Dostoevsky
           </h1>
 
-          <p>
+
+          <p class="hero-description">
             An arctic fox who loves stories,
-            music, games, and exploring new worlds.
+            music, games, languages, and
+            exploring new worlds.
           </p>
+
 
           <div class="buttons">
 
@@ -729,6 +827,7 @@
             >
               Discover Kurkaru →
             </a>
+
 
             <a
               href="gallery.html"
@@ -746,13 +845,22 @@
     </section>
 
 
-    <!-- ABOUT -->
+
+    <!-- ==================================================
+         ABOUT KURKARU
+    ================================================== -->
 
     <section class="card">
 
-      <h2>
+      <h2 class="card-title">
         About Kurkaru
       </h2>
+
+
+      <p class="card-subtitle">
+        A little introduction to the fox behind the story.
+      </p>
+
 
       <div class="about-content">
 
@@ -762,14 +870,24 @@
           class="about-avatar"
         >
 
+
         <div class="about-text">
 
           <p>
             Kurkaru is a soft-spoken arctic fox
             with a quiet hint of cunning in his eyes.
-            He dreams of becoming a writer and one day
-            creating his own furry visual novel.
+            In his heart lives a dream to become
+            a writer like Fyodor Dostoevsky.
           </p>
+
+
+          <p>
+            One day, he hopes to bring his own
+            furry visual novel to life — a world
+            shaped by imagination, emotions,
+            and stories.
+          </p>
+
 
           <div class="buttons">
 
@@ -789,116 +907,258 @@
     </section>
 
 
-    <!-- SOCIAL -->
+
+    <!-- ==================================================
+         SOCIAL MEDIA
+    ================================================== -->
 
     <section class="card">
 
-      <h2>
+      <h2 class="card-title">
         Social Media
       </h2>
 
+
+      <p class="card-subtitle">
+        Follow Kurkaru across different platforms.
+      </p>
+
+
       <div class="social-grid">
+
+
+        <!-- INSTAGRAM -->
 
         <a
           href="https://www.instagram.com/kurrsoxee/"
           class="social-item"
           target="_blank"
+          rel="noopener noreferrer"
         >
+
           <span class="social-title">
             Instagram
           </span>
 
           <span class="social-desc">
-            Everyday life, sketches, and furry art.
+            Follow Kurkaru's everyday life,
+            sketches, and furry art updates.
           </span>
+
         </a>
 
+
+
+        <!-- TIKTOK -->
 
         <a
           href="https://www.tiktok.com/@kurkarudostoevsky"
           class="social-item"
           target="_blank"
+          rel="noopener noreferrer"
         >
+
           <span class="social-title">
             TikTok
           </span>
 
           <span class="social-desc">
-            Short videos, memes, and character moments.
+            Watch fun short videos, memes,
+            and character moments.
           </span>
+
         </a>
 
+
+
+        <!-- X -->
 
         <a
           href="https://x.com/kurkaruu"
           class="social-item"
           target="_blank"
+          rel="noopener noreferrer"
         >
+
           <span class="social-title">
             X / Twitter
           </span>
 
           <span class="social-desc">
-            Thoughts, updates, and furry community interactions.
+            Thoughts, updates, and interactions
+            with the furry community.
           </span>
+
         </a>
 
+
+
+        <!-- YOUTUBE -->
 
         <a
           href="https://youtube.com/@kurkarulyco"
           class="social-item"
           target="_blank"
+          rel="noopener noreferrer"
         >
+
           <span class="social-title">
             YouTube
           </span>
 
           <span class="social-desc">
-            Games and content related to Kurkaru.
+            Content about games and everything
+            related to Kurkaru.
           </span>
+
         </a>
+
+
+
+        <!-- ITCH.IO -->
+
+        <a
+          href="https://kurkaru-lyco-dostoevsky.itch.io/"
+          class="social-item"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="social-title">
+            itch.io
+          </span>
+
+          <span class="social-desc">
+            Furry visual novels and some of
+            Kurkaru's favorite games. 🐾📖
+          </span>
+
+        </a>
+
+
+
+        <!-- WATTPAD -->
+
+        <a
+          href="https://www.wattpad.com/user/kurkarulyc00"
+          class="social-item"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="social-title">
+            Wattpad
+          </span>
+
+          <span class="social-desc">
+            Stories drifting through Kurkaru's mind,
+            slowly becoming words.
+          </span>
+
+        </a>
+
+
+
+        <!-- SPOTIFY -->
+
+        <a
+          href="https://open.spotify.com/user/31txsbmno2im3wqnq4y4a6ltrlsm"
+          class="social-item"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="social-title">
+            Spotify
+          </span>
+
+          <span class="social-desc">
+            Kurkaru weaves melodies into stories
+            through music.
+          </span>
+
+        </a>
+
+
+
+        <!-- SAWERIA -->
+
+        <a
+          href="https://saweria.co/kurkaruu"
+          class="social-item"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="social-title">
+            Support Me on Saweria
+          </span>
+
+          <span class="social-desc">
+            Support Kurkaru and help future
+            creative projects grow.
+          </span>
+
+        </a>
+
 
       </div>
 
     </section>
 
 
-    <!-- GALLERY -->
+
+    <!-- ==================================================
+         GAME GALLERY
+    ================================================== -->
 
     <section class="card">
 
-      <h2>
+      <h2 class="card-title">
         Game Gallery
       </h2>
 
-      <p style="color: var(--gray);">
+
+      <p class="card-subtitle">
         A few memories from games Kurkaru has played.
       </p>
 
+
       <div class="gallery-grid">
 
+
         <div class="gallery-item">
+
           <img
             src="Kura_flex2.jpg"
-            alt="Game Gallery"
+            alt="Kurkaru Game Gallery 1"
           >
+
         </div>
 
+
         <div class="gallery-item">
+
           <img
             src="game_gallery_2.jpg"
-            alt="Game Gallery"
+            alt="Kurkaru Game Gallery 2"
           >
+
         </div>
+
 
         <div class="gallery-item">
+
           <img
             src="akun_athena.jpg"
-            alt="Game Gallery"
+            alt="Kurkaru Game Gallery 3"
           >
+
         </div>
 
+
       </div>
+
 
       <div class="buttons">
 
@@ -914,7 +1174,10 @@
     </section>
 
 
-    <!-- FOOTER -->
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
 
     <footer>
 
@@ -927,7 +1190,9 @@
 
     </footer>
 
+
   </main>
 
 </body>
+
 </html>
